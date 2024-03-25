@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Exminate - The Smart Exam System</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-	<script src="index.js"></script>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
     <h1>
         Exminate
     </h1>
@@ -17,5 +10,4 @@
         The MCQs and code will be evaluated automatically. 
     </p>
     
-  </body>
-</html>
+{% endblock content %}
