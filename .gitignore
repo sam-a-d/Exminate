@@ -141,5 +141,8 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-
+# Ignore all caches
 *__init__.py
+
+# ignore /assets folder
+/assets/
