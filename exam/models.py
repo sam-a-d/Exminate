@@ -20,9 +20,11 @@ DIFFICULTY_CHOI = (
 
 class Exam(models.Model):
     name = models.CharField(max_length = 120)
+    # exam = models.ManyToManyField(Course)
     topic = models.ForeignKey(Topic, on_delete = models.CASCADE)
-    exam_description = models.CharField(max_length = 120)
+    exam_description = models.TextField(max_length = 120)
     no_of_questions = models.IntegerField()
+    total_marks = models.IntegerField()
     created = models.DateTimeField(auto_now_add = True)
     difficulty_level = DIFFICULTY_CHOI
 
