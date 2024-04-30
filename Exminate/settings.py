@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'exam',
     'mcq',
+    'course',
 ]
 
 MIDDLEWARE = [
