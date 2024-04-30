@@ -147,3 +147,4 @@ GitHub.sublime-settings
 
 # ignore /assets folder
 /assets/
+*/migrations/*
