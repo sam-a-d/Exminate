@@ -9,7 +9,7 @@ class Tag(models.Model):
 
 # Model for MCQ questions
 class MCQ(models.Model):
-    
+
     # Meta informations
     field = models.ManyToManyField(Field, blank=True)
     Topic = models.ManyToManyField(Topic, blank=True)
@@ -32,4 +32,26 @@ class MCQ(models.Model):
     )
     # Answer and the marks
     right_ans = models.CharField(max_length=100, choices=options)
+    mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+
+class ShortQues(models.Model):
+
+    # Meta
+    field = models.ManyToManyField(Field)
+    tag = models.ManyToManyField(Tag)
+    exam = models.ManyToManyField(Exam)
+
+    question = models.TextField(max_length=1200)
+    answer = models.CharField(max_length=100)
+    mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+
+
+class LongQues(models.Model):
+
+    # Meta
+    field = models.ManyToManyField(Field)
+    tag = models.ManyToManyField(Tag)
+    exam = models.ManyToManyField(Exam)
+    
+    question = models.TextField(max_length=1200)
     mark = models.PositiveIntegerField(default=1, null=True, blank=True)
