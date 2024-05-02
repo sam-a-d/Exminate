@@ -2,6 +2,7 @@ from django.db import models
 
 # Imports
 from root.models import Topic, Field
+from course.models import Course
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ DIFFICULTY_CHOI = (
 
 class Exam(models.Model):
     name = models.CharField(max_length = 120)
-    # exam = models.ManyToManyField(Course)
+    course = models.ManyToManyField(Course)
     topic = models.ForeignKey(Topic, on_delete = models.CASCADE)
     exam_description = models.TextField(max_length = 120)
     no_of_questions = models.IntegerField()
