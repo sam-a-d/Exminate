@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'root',
     'exam',
-    'mcq',
+    'question',
     'course',
 ]
 
