@@ -7,6 +7,10 @@ from root.models import Field, Topic
 class Tag(models.Model):
     name = models.CharField(max_length=15)
 
+    def __str__(self):
+        """Unicode representation of Designation."""
+        return self.name
+
 # Model for MCQ questions
 class MCQ(models.Model):
 
@@ -34,6 +38,10 @@ class MCQ(models.Model):
     right_ans = models.CharField(max_length=100, choices=options)
     mark = models.PositiveIntegerField(default=1, null=True, blank=True)
 
+    def __str__(self):
+        """Unicode representation of Designation."""
+        return self.question
+
 class ShortQues(models.Model):
 
     # Meta
@@ -45,6 +53,9 @@ class ShortQues(models.Model):
     answer = models.CharField(max_length=100)
     mark = models.PositiveIntegerField(default=1, null=True, blank=True)
 
+    def __str__(self):
+        """Unicode representation of Designation."""
+        return self.question
 
 class LongQues(models.Model):
 
@@ -55,3 +66,7 @@ class LongQues(models.Model):
     
     question = models.TextField(max_length=1200)
     mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+
+    def __str__(self):
+        """Unicode representation of Designation."""
+        return self.question
