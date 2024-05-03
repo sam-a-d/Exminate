@@ -104,6 +104,6 @@ class Teacher(models.Model):
         verbose_name = 'Teacher'
         verbose_name_plural = 'Teachers'
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Unicode representation of Teacher."""
-        return self.teacher_name
+        return self.name
