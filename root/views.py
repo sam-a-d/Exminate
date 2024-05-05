@@ -8,3 +8,11 @@ from django.http import HttpResponse
 def home(request):
     return render(request, 'home.html')
 
+
+def student_dashboard(request):
+    return render(request,"studashboard.html")
+
+
+
+def teacher_dashboard(request):
+    return render(request,"teacherdashboard.html")
