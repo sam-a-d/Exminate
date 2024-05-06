@@ -19,7 +19,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
     path('', views.home, name="home"),
-    path('student_dashboard/',views.student_dashboard,name="student dashboard"),
-    path('teacher_dashboard/',views.teacher_dashboard,name="teacher dashboard")
+    path('dashboard/', views.student_dashboard, name="st_dashboard"),
+    path('teacher_dashboard/', views.teacher_dashboard, name="te_dashboard") # we won't need this in future, keeping this untill then
+    
 ]
