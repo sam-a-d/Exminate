@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Imports
 from root.models import Topic, Field
@@ -22,6 +23,8 @@ class Exam(models.Model):
     total_marks = models.IntegerField()
     created = models.DateTimeField(auto_now_add = True)
     difficulty_level = DIFFICULTY_CHOI
+    start_time = models.DateTimeField(auto_now=False, default=timezone.now)
+    finish_time = models.DateTimeField(auto_now=False, default=timezone.now)
 
     def get_mcqs(self):
         pass
