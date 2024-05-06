@@ -34,9 +34,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#">My Courses</a>
             </li>            
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'admin:index' %}">Sign In</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Upcoming Exams
@@ -47,6 +44,12 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'st_dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index' %}">Sign In</a>
             </li>
           </ul>
         </div>
