@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>
+        {{ exam.name | title}}
+    </h1>
+
+    <p> Descriptions: {{ exam.exam_description }} </p>
+    <p> Questions: {{ exam.no_of_questions }} </p>
+    <p> Marks: {{ exam.total_marks }} </p>
+    <p> Difficulty: {{ exam.difficulty_level }} </p>
+    <p> Start: {{ exam.start_time }} </p>
+    <p> Finish: {{ exam.finish_time }} </p>
+    <hr>
+
+{% endblock content %}
