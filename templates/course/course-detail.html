@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>
+        Course Detail
+    </h1>
+    <p> Course: {{ course.title }} </p>
+    <p> Code: {{ course.code }} </p>
+    <p> Teacher: 
+        {% if course.teacher.all %}
+            {% for teacher in course.teacher.all %}
+                {{ teacher.name}}, 
+            {% endfor %}
+        {% endif %}
+    </p>
+    <p> Fields: 
+        {% if course.field.all %}
+            {% for field in course.field.all %}
+                {{ field.name | title}}, 
+            {% endfor %}
+        {% endif %}
+    </p>
+    <p> Descriptions: {{ course.description }} </p>
+    <p> Marks: {{ course.total_marks }} </p>
+    <hr>
+
+{% endblock content %}
