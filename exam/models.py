@@ -8,7 +8,7 @@ from course.models import Course
 # Create your models here.
 
 
-DIFFICULTY_CHOI = (
+DIFFICULTY_CHOICE = (
     ('easy', 'easy'),
     ('medium', 'medium'),
     ('hard', 'hard')
@@ -22,7 +22,7 @@ class Exam(models.Model):
     no_of_questions = models.IntegerField()
     total_marks = models.IntegerField()
     created = models.DateTimeField(auto_now_add = True)
-    difficulty_level = DIFFICULTY_CHOI
+    difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICE, default=DIFFICULTY_CHOICE[1][1])
     start_time = models.DateTimeField(auto_now=False, default=timezone.now)
     finish_time = models.DateTimeField(auto_now=False, default=timezone.now)
 
