@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
 
-    path('exams/', views.CourseListView.as_view(), name="exams"),
+    path('exams/', views.ExamListView.as_view(), name="exams"),
+    path('detail/<int:pk>', views.ExamDetailView.as_view(), name="exam-detail"),
     
     
 ]
