@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>
+        Courses
+    </h1>
+    <ol>
+    {% for course in courses %}
+        <li>
+            <a href="{% url 'course-detail' pk=course.pk %}">
+                {{course.title | title}}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock content %}
