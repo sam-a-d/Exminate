@@ -16,3 +16,13 @@ def student_dashboard(request):
 
 def teacher_dashboard(request):
     return render(request,"teacherdashboard.html")
+
+
+
+
+def examinatelogin(request):
+    return render(request,"login.html")
+
+
+def examinatesignup(request):
+    return render(request,"signup.html")
