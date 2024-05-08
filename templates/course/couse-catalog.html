@@ -5,5 +5,9 @@
     <h1>
         Courses
     </h1>
-    
+    <ol>
+    {% for course in courses %}
+        <li>{{course.title | title}}</li>
+    {% endfor %}
+    </ol>
 {% endblock content %}
