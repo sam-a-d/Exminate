@@ -7,7 +7,11 @@
     </h1>
     <ol>
     {% for exam in exams %}
-        <li>{{exam.name | title}}</li>
+        <li>
+            <a href="{% url 'exam-detail' pk=exam.pk %}">
+                {{exam.name | title}}
+            </a>
+        </li>
     {% endfor %}
     </ol>
 {% endblock content %}
