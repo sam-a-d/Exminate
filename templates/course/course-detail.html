@@ -25,4 +25,25 @@
     <p> Marks: {{ course.total_marks }} </p>
     <hr>
 
+    <h2>
+        Exams under this course
+    </h2>
+    <hr>
+
+    {% for exam in exams %}
+        <div>          
+            <h4>
+                {{ exam.name }}
+            </h4>
+            <p>
+                Total Marks: {{ exam.total_marks }}
+            </p>
+            <p> 
+                Time: {{ exam.start_time }} to {{ exam.finish_time }}
+            </p>
+            <a href="{% url 'exam-detail' pk=exam.pk %}"> View Details </a>
+            <hr>
+        </div>
+    {% endfor %}
+
 {% endblock content %}

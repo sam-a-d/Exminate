@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 
 # Custom Imports
 from .models import Course
+from exam.models import Exam
 
 # Create your views here.
 class CourseListView(ListView):
@@ -15,3 +16,8 @@ class CourseDetailView(DetailView):
     model = Course
     context_object_name = "course"
     template_name = "course/course-detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['exams'] = Exam.objects.filter(course=self.kwargs.get('pk'))
+        return context
