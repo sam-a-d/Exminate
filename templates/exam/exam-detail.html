@@ -11,6 +11,8 @@
     <p> Difficulty: {{ exam.difficulty_level | title}} </p>
     <p> Start: {{ exam.start_time }} </p>
     <p> Finish: {{ exam.finish_time }} </p>
+    <a class="btn btn-danger" href="{% url 'exam-question' pk=exam.pk %}" role="button">Attend Exam</a>
+
     <hr>
 
 {% endblock content %}
