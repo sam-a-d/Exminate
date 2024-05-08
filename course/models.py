@@ -10,6 +10,7 @@ class Course(models.Model):
     code = models.CharField(max_length=20)
     teacher = models.ManyToManyField(Teacher)
     field = models.ManyToManyField(Field)
+    is_active = models.BooleanField(default=True)
     description = models.TextField()
 
     total_marks = models.PositiveIntegerField(default=100)
