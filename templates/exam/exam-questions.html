@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>
+        {{ exam.name | title}}
+    </h1>
+    <div>
+        Instructions: {{ exam.exam_description }}
+    </div>
+    <hr>
+    
+        <div>
+            {% if mcqs.all %}
+                <h4> MCQ </h4>
+                <ol>
+                    {% for mcq in mcqs %}
+                    <li>
+                        {{ mcq.question }}
+                        <ol type="A">
+                            <li> {{ mcq.a }} </li>
+                            <li> {{ mcq.b }} </li>
+                            <li> {{ mcq.c }} </li>
+                            <li> {{ mcq.d }} </li>
+                        </ol>
+                    </li>
+
+                    {% endfor %}
+                </ol>
+            {% endif %}
+        </div>
+        <hr>
+
+        <div>
+             {% if shortQues.all %}
+                <h4> Short Questions </h4>
+                <ol>
+                    {% for ques in shortQues %}
+                    <li>
+                        {{ ques.question }}
+                    </li>
+
+                    {% endfor %}
+                </ol>
+            {% endif %}
+        </div>
+        <hr>
+
+        <div>
+            {% if longQues.all %}
+               <h4> Descriptive Questions </h4>
+               <ol>
+                   {% for ques in longQues %}
+                   <li>
+                       {{ ques.question }}
+                   </li>
+
+                   {% endfor %}
+               </ol>
+           {% endif %}
+       </div>
+
+
+{% endblock content %}
