@@ -6,11 +6,11 @@
         {{ course.title | title}}
     </h1>
 
-    <p> Code: {{ course.code }} </p>
+    <p> Code: {{ course.code | upper }} </p>
     <p> Teacher: 
         {% if course.teacher.all %}
             {% for teacher in course.teacher.all %}
-                {{ teacher.name}}, 
+                {{ teacher.name | title}},
             {% endfor %}
         {% endif %}
     </p>

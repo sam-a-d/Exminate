@@ -8,7 +8,7 @@
     <p> Descriptions: {{ exam.exam_description }} </p>
     <p> Questions: {{ exam.no_of_questions }} </p>
     <p> Marks: {{ exam.total_marks }} </p>
-    <p> Difficulty: {{ exam.difficulty_level }} </p>
+    <p> Difficulty: {{ exam.difficulty_level | title}} </p>
     <p> Start: {{ exam.start_time }} </p>
     <p> Finish: {{ exam.finish_time }} </p>
     <hr>
