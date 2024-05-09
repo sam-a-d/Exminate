@@ -8,26 +8,37 @@
         Instructions: {{ exam.exam_description }}
     </div>
     <hr>
-    
-        <div>
-            {% if mcqs.all %}
-                <h4> MCQ </h4>
-                <ol>
-                    {% for mcq in mcqs %}
-                    <li>
-                        {{ mcq.question }}
-                        <ol type="A">
-                            <li> {{ mcq.a }} </li>
-                            <li> {{ mcq.b }} </li>
-                            <li> {{ mcq.c }} </li>
-                            <li> {{ mcq.d }} </li>
-                        </ol>
-                    </li>
+        <form>
+            <div>
+                {% if mcqs.all %}
+                    <h4> MCQ </h4>
+                    <ol>
+                        {% for mcq in mcqs %}
+                        <li>
+                            <p> {{ mcq.question }} </p>
+                            
+                            <ol type="A">
 
-                    {% endfor %}
-                </ol>
-            {% endif %}
-        </div>
+                                    <input type="radio" id="mcq_{{mcq.pk}}_a" name="mcq_{{mcq.pk}}" value="A">
+                                    <label for="mcq_{{mcq.pk}}_a">{{ mcq.a }}</label><br>
+                                
+                                    <input type="radio" id="mcq_{{mcq.pk}}_b" name="mcq_{{mcq.pk}}" value="B">
+                                    <label for="mcq_{{mcq.pk}}_b">{{ mcq.b }}</label><br>
+                               
+                                    <input type="radio" id="mcq_{{mcq.pk}}_c" name="mcq_{{mcq.pk}}" value="C">
+                                    <label for="mcq_{{mcq.pk}}_c">{{ mcq.c }}</label><br>
+                                
+                                    <input type="radio" id="mcq_{{mcq.pk}}_d" name="mcq_{{mcq.pk}}" value="D">
+                                    <label for="mcq_{{mcq.pk}}_d">{{ mcq.d }}</label><br>
+                                
+                            </ol>                          
+                        </li>
+    
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </div>
+        </form>
         <hr>
 
         <div>
