@@ -28,3 +28,16 @@ class ExamQuestionDetailView(DetailView):
         context['shortQues'] = ShortQues.objects.filter(exam=self.kwargs.get('pk'))
         context['longQues'] = LongQues.objects.filter(exam=self.kwargs.get('pk'))
         return context
+
+def ExamCompleteView(request):
+    """View for ExamComplete Page"""
+
+    if request.method == "POST":
+        pass   
+    # print("Post Request", request.POST)
+    # form = OrderForm(request.POST)
+
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('orders')
+    return render(request, 'exam/exam-complete.html')

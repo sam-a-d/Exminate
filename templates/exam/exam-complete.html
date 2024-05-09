@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>
+        <p class="text-success"> Exam Complete! </p>
+    </h1>
+    <div>
+        You will get your result in the dashboard, thank you.
+        <a href="{% url 'st_dashboard' %}">Go to Dashboard </a>
+    </div>
+{% endblock content %}
