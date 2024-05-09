@@ -8,7 +8,8 @@
         Instructions: {{ exam.exam_description }}
     </div>
     <hr>
-        <form method="post">
+        <form method="post" action="{% url 'exam-complete' %}">
+            {% csrf_token %}
             <div class="mcq">
                 {% if mcqs.all %}
                     <h4> MCQ </h4>
