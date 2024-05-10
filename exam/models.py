@@ -32,7 +32,7 @@ class Exam(models.Model):
     def __str__(self) -> str:
         return f'{self.name} - Topic: {self.topic}'
 
-class McqAndShortExam(models.Model):
+class McqAndShortQExamHistory(models.Model):
     """ 
     this model stores information/history about each finished exam of
         - MCQ and
@@ -55,11 +55,39 @@ class McqAndShortExam(models.Model):
                 name="single_attempt_mcq_short_unique"
             ),
         ]
-        verbose_name = "mcqandshortexam"
-        verbose_name_plural = "mcqandshortexams"
+        verbose_name = "mcqandshortQexamHistory"
+        verbose_name_plural = "mcqandshortQexamHistorys"
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("mcqandshortexam_detail", kwargs={"pk": self.pk})
+        return reverse("mcqandshortQexamHistory_detail", kwargs={"pk": self.pk})
+
+class LongQExamHistory(models.Model):
+
+    user_id = models.IntegerField()
+    exam_id = models.IntegerField()
+    question_id = models.IntegerField()
+    user_answer = models.TextField()
+    evaluated = models.BooleanField(default=False)
+    score = models.FloatField(default=None, null=True, blank=True)
+
+    class Meta:
+
+        constraints = [
+            models.UniqueConstraint(
+                'user_id',
+                'exam_id',
+                'question_id',
+                name="single_attempt_long_unique"
+            ),
+        ]
+        verbose_name = "longqexamhistory"
+        verbose_name_plural = "longqexamhistorys"
+
+    def __str__(self):
+        return f"${self.exam_id} ${self.question_id}"
+
+    def get_absolute_url(self):
+        return reverse("longqexamhistory_detail", kwargs={"pk": self.pk})
