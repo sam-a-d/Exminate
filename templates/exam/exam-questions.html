@@ -10,6 +10,7 @@
     <hr>
         <form method="post" action="{% url 'exam-complete' %}">
             {% csrf_token %}
+            {% comment %} <input type="hidden" name="exam_id" value="{{ exam.pk }}"> {% endcomment %}
             <div class="mcq">
                 {% if mcqs.all %}
                     <h4> MCQ </h4>
@@ -64,9 +65,7 @@
                         <li>
                             <label for="longQ_{{ques.pk}}">{{ ques.question }}</label><br>
                         </li>
-                        <textarea id="longQ_{{ques.pk}}" name="longQ_{{ques.pk}}" rows="4" cols="50">
-                            
-                        </textarea>
+                        <textarea id="longQ_{{ques.pk}}" name="longQ_{{ques.pk}}" rows="4" cols="50"></textarea>
     
                        {% endfor %}
                    </ol>
