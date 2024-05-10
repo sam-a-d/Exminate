@@ -50,7 +50,7 @@
                        <li>
                            <label for="shortQ_{{ques.pk}}">{{ ques.question }}</label><br>
                        </li>
-                       <input type="text" id="shortQ_{{ques.pk}}" name="shortQ_{{ques.pk}}">                     
+                       <input type="text" id="shortQ_{{ques.pk}}" name="sq_{{ques.pk}}">                     
                        {% endfor %}
                    </ol>
                {% endif %}
@@ -65,7 +65,7 @@
                         <li>
                             <label for="longQ_{{ques.pk}}">{{ ques.question }}</label><br>
                         </li>
-                        <textarea id="longQ_{{ques.pk}}" name="longQ_{{ques.pk}}" rows="4" cols="50"></textarea>
+                        <textarea id="longQ_{{ques.pk}}" name="lq_{{ques.pk}}" rows="4" cols="50"></textarea>
     
                        {% endfor %}
                    </ol>
