@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # imports
 from root.models import Teacher, Field
@@ -34,3 +35,18 @@ class CourseVerificationToken(models.Model):
 
     def __str__(self):
         return self.token_code
+
+# Course history - who have taken which courses and when
+class CourseHistory(models.Model):
+
+    course = models.ForeignKey(Course, models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    enrolment_time = models.DateTimeField(auto_now_add=True)
+    veri_code_used = models.CharField(max_length=10)
+
+    class Meta:
+        verbose_name = "coursehistory"
+        verbose_name_plural = "coursehistories"
+
+    def __str__(self):
+        return self.course_id
