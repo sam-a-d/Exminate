@@ -49,4 +49,4 @@ class CourseHistory(models.Model):
         verbose_name_plural = "coursehistories"
 
     def __str__(self):
-        return self.course_id
+        return str(self.course_id)
