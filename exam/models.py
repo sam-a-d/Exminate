@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 # Imports
 from root.models import Topic, Field
 from course.models import Course
@@ -91,3 +91,17 @@ class LongQExamHistory(models.Model):
 
     def get_absolute_url(self):
         return reverse("longqexamhistory_detail", kwargs={"pk": self.pk})
+
+# Exam history - who have taken which exam and when
+class ExamHistory(models.Model):
+
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, models.CASCADE, default=None)
+    submission_time = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "examhistory"
+        verbose_name_plural = "examhistories"
+
+    def __str__(self):
+        return self.exam
