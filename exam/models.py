@@ -59,7 +59,7 @@ class McqAndShortQExamHistory(models.Model):
         verbose_name_plural = "mcqandshortQexamHistorys"
 
     def __str__(self):
-        return self.name
+        return f"{str(self.question_type)}, {str(self.question_id)}"
 
     def get_absolute_url(self):
         return reverse("mcqandshortQexamHistory_detail", kwargs={"pk": self.pk})
