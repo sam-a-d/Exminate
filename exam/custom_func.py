@@ -17,6 +17,7 @@ def process_mcq_and_shortQ(user_id, exam_id, ques_type,  answer_dict):
     # mcq_id = 0
 
     total_score = 0
+    mcq_and_shortQ_history = [] # this list holds records of the submitted mcq/shortQ and lated used to bult create database row/entry
 
     for question, ans in answer_dict.items():
         if ques_type == 1:
@@ -26,21 +27,29 @@ def process_mcq_and_shortQ(user_id, exam_id, ques_type,  answer_dict):
 
         elif ques_type == 2:
             shortQ_id = int(question[len('sq_'):]) # short ques exam retrived from the form that students filled during their exam
-            shortQ_details = all_shortQ_of_the_exam.get(pk=shortQ_id) # get the mcq details from the MCQ models (database)
+            shortQ_details = all_shortQ_of_the_exam.get(pk=shortQ_id) # get the ques details from the shortQues models (database)
             score = shortQ_details.mark if shortQ_details.answer == ans else 0
         
-        McqAndShortQExamHistory.objects.create(
-            user_id=user_id,
-            exam_id=exam_id,
-            question_type= ques_type,
-            question_id=mcq_id if ques_type == 1 else shortQ_id,
-            user_answer=ans,
-            score=score
+        # append the histry list for each mcq/shortQ
+        mcq_and_shortQ_history.append(
+            McqAndShortQExamHistory(
+                user_id=user_id,
+                exam_id=exam_id,
+                question_type= ques_type,
+                question_id=mcq_id if ques_type == 1 else shortQ_id,
+                user_answer=ans,
+                score=score
+            )
         )
+
+
 
         total_score += score
 
-        # return (mcq_id, ans, score)
+    # Bulk create table rows/entries using the list of records
+    McqAndShortQExamHistory.objects.bulk_create(mcq_and_shortQ_history)
+
+    print(mcq_and_shortQ_history)
     return total_score
 
 def process_longQ(user_id, exam_id, ques_type,  answer_dict):
@@ -53,11 +62,11 @@ def process_longQ(user_id, exam_id, ques_type,  answer_dict):
         lq_id = int(question[len('lq_'):]) # mcq exam retrived from the form that students filled during their exam
         question_details = all_lq_of_the_exam.get(pk=lq_id) # get the mcq details from the MCQ models (database)
 
-        LongQExamHistory.objects.create(
-            user_id=user_id,
-            exam_id=exam_id,
-            question_id=lq_id,
-            user_answer=ans,
-        )
+        # LongQExamHistory.objects.create(
+        #     user_id=user_id,
+        #     exam_id=exam_id,
+        #     question_id=lq_id,
+        #     user_answer=ans,
+        # )
     
     return None
