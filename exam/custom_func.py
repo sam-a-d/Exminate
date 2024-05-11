@@ -42,8 +42,6 @@ def process_mcq_and_shortQ(user_id, exam_id, ques_type,  answer_dict):
             )
         )
 
-
-
         total_score += score
 
     # Bulk create table rows/entries using the list of records
@@ -56,17 +54,23 @@ def process_longQ(user_id, exam_id, ques_type,  answer_dict):
     total_score = 0
     
     all_lq_of_the_exam = LongQues.objects.filter(exam=exam_id)
+    longQ_history = [] # this list holds records of the submitted mcq/shortQ and lated used to bult create database row/entry
 
     for question, ans in answer_dict.items():
 
         lq_id = int(question[len('lq_'):]) # mcq exam retrived from the form that students filled during their exam
         question_details = all_lq_of_the_exam.get(pk=lq_id) # get the mcq details from the MCQ models (database)
 
-        # LongQExamHistory.objects.create(
-        #     user_id=user_id,
-        #     exam_id=exam_id,
-        #     question_id=lq_id,
-        #     user_answer=ans,
-        # )
+        longQ_history.append(
+            LongQExamHistory(
+                user_id=user_id,
+                exam_id=exam_id,
+                question_id=lq_id,
+                user_answer=ans,
+            )
+        )
     
+    # Bulk create table rows/entries using the list of records
+    LongQExamHistory.objects.bulk_create(longQ_history)
+
     return None
