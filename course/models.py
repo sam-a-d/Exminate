@@ -23,8 +23,10 @@ class Course(models.Model):
 # Course verification token
 class CourseVerificationToken(models.Model):
 
-    token_code = models.CharField(max_length=10, null=False, default='BS123')
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE),
+    # course = models.ForeignKey(Course, on_delete=models.CASCADE),
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    token_code = models.CharField(max_length=10, null=False)
+    no_of_tokens = models.IntegerField(null=True, blank=True)
     valid_from = models.DateTimeField(default=timezone.now)
     valid_to = models.DateTimeField(null=True)
     is_active = models.BooleanField(default=True)
