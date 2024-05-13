@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.http import HttpResponse
 
+# Custom imports
+from course.models import CourseHistory
+
 # Create your views here.
 
 def home(request):
@@ -11,7 +14,14 @@ def home(request):
 
 def student_dashboard(request):
     """View for Student Dashboard"""
-    return render(request,"studashboard.html")
+    user = request.user
+    courses_taken_by_user = CourseHistory.objects.filter(user=user)
+
+    context = {
+        "courses_taken" : courses_taken_by_user,
+    }
+
+    return render(request,"studashboard.html", context=context)
 
 def teacher_dashboard(request):
     """View for teachers dashboard"""
