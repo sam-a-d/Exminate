@@ -6,5 +6,12 @@
     <h1>
         Student's Dashboard
     </h1>
-    
+    <div>
+        <p> My Courses </p>
+
+        {% for course in courses_taken %}
+            {{course.course.title | title}}
+            <a href="{% url 'course-detail' pk=course.course.pk %}"> Go to Course </a>
+        {% endfor %}
+    </div>
 {% endblock content %}
