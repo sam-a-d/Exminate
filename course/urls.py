@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('course-catalog/', views.CourseListView.as_view(), name="course-catalog"),
     path('detail/<int:pk>', views.CourseDetailView.as_view(), name="course-detail"),
+    path('enrolment/', views.courseEnrolmentView, name="course-enrolment"),
     
 
 ]
