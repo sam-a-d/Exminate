@@ -142,7 +142,7 @@ GitHub.sublime-settings
 .history
 
 # Ignore all caches
-*__init__.py
+
 *0001_initial.py
 
 # ignore /assets folder
