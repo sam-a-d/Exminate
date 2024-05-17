@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
 # custom imports 
-from .models import Exam
+from .models import Exam, ExamHistory
 from question.models import MCQ, ShortQues, LongQues
 from .custom_func import process_mcq_and_shortQ, process_longQ
 # Create your views here.
@@ -48,7 +48,7 @@ def ExamCompleteView(request):
         shortQ_answers = {}
         longQ_answers = {}
 
-        mcq_score, shortQScore, longQ_score = (0,0,0)
+        mcq_score, shortQ_score, longQ_score = (0,0,0)
         # Seperate answers according to the questions
         for k, v in request.POST.items():
             v = v.strip() # stripping whitespaces from the user inputs
@@ -69,6 +69,16 @@ def ExamCompleteView(request):
         if longQ_answers:
             longQ_score = process_longQ(user_id=user_id, exam_id=exam_id, ques_type=question_type['longQ'], answer_dict=longQ_answers)
 
+        # Create a new exam record
+        ExamHistory.objects.create(
+            exam=Exam.objects.get(id = exam_id),
+            user=request.user,
+            # if no long question is answered, evaluation is done automatically; thus, evaluated filed is set to be False
+            evaluated= True if not longQ_answers else False,
+            mcq_score = mcq_score,
+            shortQ_score = shortQ_score
+        )
+        
         print('MCQ', mcq_score, 'Short Q', shortQ_score, "LongQ", longQ_score)
  
     return render(request, 'exam/exam-complete.html')
