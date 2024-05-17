@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 # Custom imports
 from course.models import CourseHistory
+from exam.models import ExamHistory
 
 # Create your views here.
 
@@ -16,9 +17,11 @@ def student_dashboard(request):
     """View for Student Dashboard"""
     user = request.user
     courses_taken_by_user = CourseHistory.objects.filter(user=user)
+    completed_exams = ExamHistory.objects.filter(user=user)
 
     context = {
         "courses_taken" : courses_taken_by_user,
+        "completed_exams" : completed_exams,
     }
 
     return render(request,"studashboard.html", context=context)
