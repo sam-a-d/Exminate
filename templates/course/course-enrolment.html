@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+    <h1>
+        Enroll A Course 
+    </h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="">
+            <label for="course_code"> Course Code </label><br>
+            <input type="text" id="course_code" name="course_code"> <br>
+
+            <label for="enrolment_token"> Verification Token </label><br>
+            <input type="text" id="enrolment_token" name="enrolment_token"><br><br>
+
+            <input type="Submit" value="Submit">
+        </div>
+    </form>
+
+{% endblock content %}
