@@ -98,10 +98,15 @@ class ExamHistory(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     user = models.ForeignKey(User, models.CASCADE, default=None)
     submission_time = models.DateTimeField(auto_now=True)
-    
+    evaluated = models.BooleanField(default=False)
+    mcq_score = models.IntegerField(default=0)
+    shortQ_score = models.IntegerField(default=0)
+    longQ_score = models.FloatField(default=0)
+    codingQ_score = models.FloatField(default=0.0)
+
     class Meta:
         verbose_name = "examhistory"
         verbose_name_plural = "examhistories"
 
     def __str__(self):
-        return self.exam
+        return str(self.exam)
