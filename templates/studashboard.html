@@ -23,11 +23,16 @@
             <ol>
                 {% for p_exm in completed_exams %}
                     <li> {{p_exm.exam.name | title}} | 
-                        Evaluation Status: {{p_exm.evaluated}} | 
                         {% sum_numbers p_exm.mcq_score p_exm.shortQ_score p_exm.longQ_score p_exm.codingQ_score as total_score%}
-                        Score: (
-                            {{total_score}}
-                            )
+                        {% if p_exm.evaluated %}
+                            Score: (
+                                {{total_score}}
+                                )
+                        {% else %}
+                            Score(Under Evaluation)
+                        {% endif %}
+
+                        
                     </li>
                     <a href="#"> View Details </a>
                 {% endfor %}
