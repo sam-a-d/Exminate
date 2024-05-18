@@ -38,10 +38,10 @@ class McqAndShortQExamHistory(models.Model):
         - MCQ and
         - Short Question
     """
-    user_id = models.IntegerField()
-    exam_id = models.IntegerField()
-    question_type = models.IntegerField()
-    question_id = models.IntegerField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE, default=None)
+    question_type = models.IntegerField() # type 1: MCQ, T2: Short, T3: Long, T4: Code
+    question_id = models.IntegerField()  # primary key of the respective question
     user_answer = models.CharField(max_length=200, default=None)
     score = models.IntegerField()
 
@@ -66,8 +66,8 @@ class McqAndShortQExamHistory(models.Model):
 
 class LongQExamHistory(models.Model):
 
-    user_id = models.IntegerField()
-    exam_id = models.IntegerField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question_id = models.IntegerField()
     user_answer = models.TextField()
     evaluated = models.BooleanField(default=False)
