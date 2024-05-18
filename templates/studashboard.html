@@ -33,8 +33,8 @@
                 {% endfor %}
             </ol>
             {% comment %} Upcoming Exams {% endcomment %}
+            <h2> Upcoming Exams </h2>
             {% for course in courses_taken %}
-                <h2> Upcoming Exams </h2>
                 {% for exam in course.course.exam_set.all %}
                     {% if not exam.examhistory_set.exists %}
                         <li> {{ exam }} | <a href="{% url 'exam-detail' pk=exam.pk %}"> View Details </a> </li>
