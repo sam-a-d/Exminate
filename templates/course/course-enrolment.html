@@ -9,11 +9,12 @@
     <form method="POST" action="">
         {% csrf_token %}
         <div class="">
-            <label for="course_code"> Course Code </label><br>
-            <input type="text" id="course_code" name="course_code"> <br>
+            
+            <label for="id_course_code"> Course Code </label><br>
+            {{ form.course_code }}<br> 
 
-            <label for="enrolment_token"> Verification Token </label><br>
-            <input type="text" id="enrolment_token" name="enrolment_token"><br><br>
+            <label for="id_verification_token"> Verification Token </label><br>
+            {{ form.verification_token }}<br><br>
 
             <input type="Submit" value="Submit">
         </div>
