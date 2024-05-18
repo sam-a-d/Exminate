@@ -1,8 +1,9 @@
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
+from django.contrib import messages
 
 # Custom Imports
 from .models import Course, CourseHistory, CourseVerificationToken
@@ -58,12 +59,16 @@ def courseEnrolmentView(request, courseID=None):
                         user = user,
                         veri_code_used=verification_token
                     )
+                    messages.success(request, "Course enrolment successfull, please go to your dashboard")
+                    return redirect('course-enrolment-outcome')
                 else:
-                    print("Token is not valid")
+                    messages.error(request, "Token is not valid")
+                    return redirect('course-enrolment-outcome')
 
             else:
-                print('Code/ Token Do not Exist')
-            
+                # redirect to outcome page with an error message if entered an invalid token/course code
+                messages.error(request, "Course code or token is not valid")
+                return redirect('course-enrolment-outcome')
         else:
             pass
     
