@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+    <h1>
+        Enrolment Outcome
+    </h1>
+    {% for message in messages %}
+        <h2 class="{% if message.tags == "error" %}text-danger mt-3{% else %}text-success mt-3{% endif %}">{{message}}</h2>
+    {% endfor %}
+
+{% endblock content %}
