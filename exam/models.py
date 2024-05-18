@@ -87,7 +87,7 @@ class LongQExamHistory(models.Model):
         verbose_name_plural = "longqexamhistorys"
 
     def __str__(self):
-        return f"${self.exam_id} ${self.question_id}"
+        return f"{self.exam_id} - {self.question_id}"
 
     def get_absolute_url(self):
         return reverse("longqexamhistory_detail", kwargs={"pk": self.pk})
