@@ -47,6 +47,9 @@ class CourseHistory(models.Model):
     veri_code_used = models.CharField(max_length=10)
 
     class Meta:
+        constraints = [
+            models.UniqueConstraint('course','user', name="unique course-user combinations")
+        ]
         verbose_name = "coursehistory"
         verbose_name_plural = "coursehistories"
 
