@@ -14,9 +14,13 @@
             {{ form.course_code }}<br> 
 
             <label for="id_verification_token"> Verification Token </label><br>
-            {{ form.verification_token }}<br><br>
-
+            {{ form.verification_token }}<br>
+            {% for message in messages %}
+                <p class="{% if message.tags == "error" %}text-danger mt-3{% else %}text-success mt-3{% endif %}">{{message}}</p>
+            {% endfor %}
+            <br>
             <input type="Submit" value="Submit">
+
         </div>
     </form>
 
