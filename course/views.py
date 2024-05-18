@@ -73,7 +73,6 @@ def courseEnrolmentView(request, courseID=None):
     
     context = {
         'form' : form,
-        'course_id': courseID
     }
     return render(request, template_name='course/course-enrolment.html', context=context)
 
