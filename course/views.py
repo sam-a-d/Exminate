@@ -59,16 +59,16 @@ def courseEnrolmentView(request, courseID=None):
                         user = user,
                         veri_code_used=verification_token
                     )
+                    # redirect to outcome page with a success message
                     messages.success(request, "Course enrolment successfull, please go to your dashboard")
                     return redirect('course-enrolment-outcome')
                 else:
+                    # Shows an error message if entered an invalid token code
                     messages.error(request, "Token is not valid")
-                    return redirect('course-enrolment-outcome')
 
             else:
-                # redirect to outcome page with an error message if entered an invalid token/course code
-                messages.error(request, "Course code or token is not valid")
-                return redirect('course-enrolment-outcome')
+                # Shows an error message if entered an invalid token/course code
+                messages.error(request, "Course code or token is not valid!")
         else:
             pass
     
