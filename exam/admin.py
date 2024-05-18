@@ -1,5 +1,5 @@
 from django.contrib import admin
-from exam.models import Exam, Topic, Field
+from exam.models import Exam, Topic, Field, ExamHistory
 
 # Register your models here.
-admin.site.register([Exam])
+admin.site.register([Exam, ExamHistory])
