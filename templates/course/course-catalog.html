@@ -6,15 +6,15 @@
         Courses
     </h1>
     <ol>
-    {% for course in courses %}
-        <li>
-            {{course.title | title}} <br>
-            {% if course.id in taken_courses %}
-                <a href="{% url 'course-detail' pk=course.pk %}"> View Course </a>
-            {% else %}
-                <a href="#"> Enroll This Course </a>
-            {% endif %}
-        </li>
-    {% endfor %}
+        {% for course in courses %}
+            <li>
+                {{course.title | title}} <br>
+                {% if course.id in taken_courses %}
+                    <a href="{% url 'course-detail' pk=course.pk %}"> View Course </a>
+                {% else %}
+                    <a href="{% url 'course-enrolment' course.code %}"> Enroll This Course </a>
+                {% endif %}
+            </li>
+        {% endfor %}
     </ol>
 {% endblock content %}
