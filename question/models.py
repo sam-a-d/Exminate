@@ -36,7 +36,7 @@ class MCQ(models.Model):
     )
     # Answer and the marks
     right_ans = models.CharField(max_length=100, choices=options)
-    mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+    mark = models.PositiveIntegerField(default=2, null=True, blank=True)
 
     def __str__(self):
         """Unicode representation of Designation."""
@@ -51,7 +51,7 @@ class ShortQues(models.Model):
 
     question = models.TextField(max_length=1200)
     answer = models.CharField(max_length=100)
-    mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+    mark = models.PositiveIntegerField(default=5, null=True, blank=True)
 
     def __str__(self):
         """Unicode representation of Designation."""
@@ -65,7 +65,7 @@ class LongQues(models.Model):
     exam = models.ManyToManyField(Exam)
     
     question = models.TextField(max_length=1200)
-    mark = models.PositiveIntegerField(default=1, null=True, blank=True)
+    mark = models.PositiveIntegerField(default=10, null=True, blank=True)
 
     def __str__(self):
         """Unicode representation of Designation."""
