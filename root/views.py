@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from course.models import CourseHistory
 from exam.models import ExamHistory
 
+from .decorators import allowed_user_groups
 # Create your views here.
 
 def home(request):
@@ -26,6 +27,7 @@ def student_dashboard(request):
 
     return render(request,"studashboard.html", context=context)
 
+@allowed_user_groups(allowed_groups=['teacher'])
 def teacher_dashboard(request):
     """View for teachers dashboard"""
     return render(request,"teacherdashboard.html")
