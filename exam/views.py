@@ -1,18 +1,24 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # custom imports 
 from .models import Exam, ExamHistory
 from question.models import MCQ, ShortQues, LongQues
 from .custom_func import process_mcq_and_shortQ, process_longQ
+
 # Create your views here.
+
 class ExamListView(ListView):
     model = Exam
     context_object_name = 'exams'
     template_name = "exam/exams.html"
 
-class ExamDetailView(DetailView):
+class ExamDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login' # specifying the login url for the LoginRequiredMixin
+
     model = Exam
     context_object_name = 'exam'
     template_name = "exam/exam-detail.html"
