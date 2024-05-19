@@ -23,6 +23,6 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('dashboard/', views.student_dashboard, name="st_dashboard"),
     path('teacher_dashboard/', views.teacher_dashboard, name="te_dashboard"), # we won't need this in future, keeping this untill then
-    path('examinate_login/', views.examinatelogin, name="login or signup"),
-    path('examinate_signup/',views.examinatesignup, name="Sign up")
+    path('login/', views.examinatelogin, name="login"),
+    path('signup/',views.examinatesignup, name="sign_up")
 ]
