@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -14,6 +14,7 @@ def home(request):
     """View for homepage"""
     return render(request, 'home.html')
 
+@login_required(login_url='login')
 def student_dashboard(request):
     """View for Student Dashboard"""
     user = request.user
