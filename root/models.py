@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Institute(models.Model):
     """Model definition for Institute."""
@@ -107,3 +107,28 @@ class Teacher(models.Model):
     def __str__(self) -> str:
         """Unicode representation of Teacher."""
         return self.name
+    
+class StudentUser(models.Model):
+
+    genders = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    )
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE) # the built-in user model
+    reg_number = models.BigIntegerField()
+    name = models.CharField(max_length=100, null=False, blank=False)
+    gender = models.CharField(max_length=30, null=True, choices=genders)
+    phone_number = models.IntegerField(null=True, blank=True)
+    email = models.EmailField()
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE)
+    institute = models.ForeignKey(Institute, on_delete=models.CASCADE)
+    acc_creation_time = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        verbose_name = ("examinateuser")
+        verbose_name_plural = ("examinateusers")
+
+    def __str__(self):
+        return str(self.reg_number)
