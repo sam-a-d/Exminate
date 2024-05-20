@@ -5,6 +5,11 @@
 
 
     <h1>sign up or log in page</h1>
-
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ loginForm.username }} <br><br>
+        {{ loginForm.password }} <br><br>
+        <input type="Submit" value=Submit>
+    </form>
     
 {% endblock content %}
