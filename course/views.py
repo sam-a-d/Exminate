@@ -4,6 +4,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Custom Imports
 from .models import Course, CourseHistory, CourseVerificationToken
@@ -11,7 +13,9 @@ from exam.models import Exam
 from .forms import CourseEnrolmentForm
 
 # Create your views here.
-class CourseListView(ListView):
+
+class CourseListView(LoginRequiredMixin, ListView):
+    login_url = 'login'
     model = Course
     context_object_name = 'courses'
     template_name = "course/course-catalog.html"
@@ -26,7 +30,8 @@ class CourseListView(ListView):
         print(taken_courses)
         return context
 
-class CourseDetailView(DetailView):
+class CourseDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
     model = Course
     context_object_name = "course"
     template_name = "course/course-detail.html"
@@ -36,6 +41,7 @@ class CourseDetailView(DetailView):
         context['exams'] = Exam.objects.filter(course=self.kwargs.get('pk'))
         return context
 
+@login_required(login_url='login')
 def courseEnrolmentView(request, courseID=None):
     
     if request.POST:
@@ -81,6 +87,7 @@ def courseEnrolmentView(request, courseID=None):
     }
     return render(request, template_name='course/course-enrolment.html', context=context)
 
+@login_required(login_url='login')
 def courseEnrolmentOutcome(request):
 
     return render(request, template_name='course/course-enrolment-outcome.html')
