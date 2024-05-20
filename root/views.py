@@ -6,6 +6,7 @@ from django.http import HttpResponse
 # Custom imports
 from course.models import CourseHistory
 from exam.models import ExamHistory
+from .forms import LoginForm
 
 from .decorators import allowed_user_groups
 # Create your views here.
@@ -35,7 +36,13 @@ def teacher_dashboard(request):
 
 def examinatelogin(request):
     """Login Page"""
-    return render(request,"login.html")
+    loginForm = LoginForm()
+
+    context = {
+        'loginForm' : loginForm
+    }
+
+    return render(request,"login.html", context=context)
 
 def examinatesignup(request):
     """signup page"""
