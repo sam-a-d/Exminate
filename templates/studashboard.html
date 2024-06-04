@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %} 
+
+  <body>
+    <div class="row d-flex justify-content-center mt-2">
+         <div class="col-lg-4 col-md-6 col-sm-12  d-flex flex-column bg-dark"> 
+            <div style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; border-radius:50%;margin-left:30%;margin-top:30%" class=" bg-primary text-white justify-content-center">Profile</div>
+            <a class="bg-primary text-center text-white p-5 m-5 rounded" href="{% url 'exams' %}"  style="text-decoration: none; color:rgb(249, 242, 242)">Exams</a>
+            <div class="bg-primary text-center text-white p-5 m-5 rounded">Assignments</div>
+            <a class="bg-primary text-center text-white p-5 m-5 rounded" href="{% url 'course-catalog' %}"  style="text-decoration: none; color:rgb(249, 242, 242)">Courses</a>
+            <div class="bg-primary text-center text-white p-5 m-5 rounded">My Profile</div>  
+        </div>
+        <div class=" col-lg-8 col-md-6 col-sm-12 bg-white">
+
+          <div class="d-flex bg-dark width-100% mt-2">
+            <div   class="p-2 flex-fill text-white"  ><b>Exam</b></div>
+           
+              <div   class="p-2 flex-fill text-white"  ><b>Topic</b></div>
+        
+            
+              <div  class="p-2  flex-fill text-white" ><b>Marks</b></div>
+              <div  class="p-2 flex-fill text-white" ><b>Time</b></div>
+
+          
+          <div  class="p-2 flex-fill text-white" ><b></b></div>
+          <div  class="p-2 flex-fill text-white" ><b></b></div>
+          </div>
+        
+
+          <div class="bg-primary mt-2">
+
+            {% for course in courses_taken %}
+            {% for exam in course.course.exam_set.all %}
+                {% if not exam.examhistory_set.exists %}
+                
+                <div class="d-flex bg-primary">
+                  <div  class="p-2 flex-fill text-white"  ><b> {{ exam.name }}</b></div>
+                 
+                    <div  class="p-2 flex-fill text-white"  ><b> {{ exam.topic }}</b></div>
+              
+                  
+                    <div class="p-2 margin-left-2 flex-fill text-white" ><b> {{ exam.total_marks }}</b></div>
+                    <div class="p-2 flex-fill text-white" ><b> {{ exam.start_time }}</b></div>
+                    <button class="btn btn-danger p-2 m-2 flex-fill"> <a href="{% url 'exam-detail' pk=exam.pk %}" style="text-decoration: none; color:black">Attend</a> </button>
+
+                </div>
+                    
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+          </div>
+
+
+        
+
+             <div class="d-flex bg-dark width-100% mt-5">
+             <div   class="p-2 flex-fill text-white "  ><b>Assignment Topic</b></div>
+
+           
+        
+            
+              
+              <div  class="p-2 flex-fill text-white " ><b>Submission Date</b></div>
+              <div  class="p-2 flex-fill text-white" ><b></b></div>
+
+          
+          
+          </div> 
+
+          <div class="d-flex bg-primary width-100% mt-2">
+            <div   class="p-2 flex-fill text-white "  ><b>Python</b></div>
+       
+            <div  class="p-2 flex-fill text-white" ><b></b></div>
+             
+             <div  class="p-2 flex-fill text-white " ><b>26 June</b></div>
+             
+             <button class="btn btn-danger m-3 flex-fill"> <a href="" style="text-decoration: none; color:black">Submit</a> </button>
+
+         
+         
+         </div> 
+        
+
+     
+  
+           
+
+  <div   class="p-2 d-flex justify-content-center text-white bg-dark mt-5"  ><b>Course In Progress</b></div>
+  <div class="d-flex bg-black width-100% mt-2">
+  
+</div>
+
+</div>
+         
+
+            
+     
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+
+
+   
+{% endblock content %}
