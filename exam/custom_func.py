@@ -5,6 +5,9 @@
 # imports
 from question.models import MCQ, ShortQues, LongQues
 from exam.models import McqAndShortQExamHistory, LongQExamHistory
+from django.contrib.auth.models import User
+
+from exam.models import Exam
 
 def process_mcq_and_shortQ(user_id, exam_id, ques_type,  answer_dict):
     
@@ -33,8 +36,8 @@ def process_mcq_and_shortQ(user_id, exam_id, ques_type,  answer_dict):
         # append the histry list for each mcq/shortQ
         mcq_and_shortQ_history.append(
             McqAndShortQExamHistory(
-                user_id=user_id,
-                exam_id=exam_id,
+                user_id= User.objects.get(id = user_id),
+                exam_id= Exam.objects.get(id = exam_id),
                 question_type= ques_type,
                 question_id=mcq_id if ques_type == 1 else shortQ_id,
                 user_answer=ans,
