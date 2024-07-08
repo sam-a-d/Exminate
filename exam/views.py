@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 # custom imports 
 from .models import Exam, ExamHistory
@@ -23,7 +24,9 @@ class ExamDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'exam'
     template_name = "exam/exam-detail.html"
 
-class ExamQuestionDetailView(DetailView):
+class ExamQuestionDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+
     model = Exam
     context_object_name = 'exam'
     template_name = "exam/exam-questions.html"
@@ -42,6 +45,7 @@ class ExamQuestionDetailView(DetailView):
         context['longQues'] = LongQues.objects.filter(exam=self.kwargs.get('pk'))
         return context
 
+@login_required(login_url='login')
 def ExamCompleteView(request):
     """View for ExamComplete Page"""
     question_type = {'mcq' : 1, 'shortQ': 2, 'longQ': 3, 'code': 4}
@@ -78,13 +82,13 @@ def ExamCompleteView(request):
         # Create a new exam record
         ExamHistory.objects.create(
             exam=Exam.objects.get(id = exam_id),
-            user=request.user,
+            user=User.objects.get(id = user_id),
             # if no long question is answered, evaluation is done automatically; thus, evaluated filed is set to be False
             evaluated= True if not longQ_answers else False,
             mcq_score = mcq_score,
             shortQ_score = shortQ_score
         )
-        
+
         print('MCQ', mcq_score, 'Short Q', shortQ_score, "LongQ", longQ_score)
  
     return render(request, 'exam/exam-complete.html')
