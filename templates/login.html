@@ -4,12 +4,32 @@
 
 
 
-    <h1>sign up or log in page</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ loginForm.username }} <br><br>
-        {{ loginForm.password }} <br><br>
-        <input type="Submit" value=Submit>
-    </form>
+  
+
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div>
+            <img class="loginimage" style="height: 600px; width: 850px;" src="{% static 'image/undraw_Code_thinking_re_gka2.png' %}">
+        </div>
+        <div class="logs">
+            <h3 class="text-center" style="font-family: 'Fredoka', sans-serif; font-weight: 900;">Login to your Account</h3>
+
+            <form class="formclass mt-5"  action="" method="POST">
+
+                {% csrf_token %}
+                <div class="loginuser">
+                {{ loginForm.username }} <br><br>
+                </div>
+                <div class="loginuser">
+                {{ loginForm.password }} <br><br>
+                </div>
+                <div class="loginsubmit">
+                <input type="submit" value="Submit">
+                </div>
+            </form>
+            <h6 class="text-end mt-4">Don't have an account?click here to <a href="{% static "signup.html" %}">signup</a> </h6>    
+        </div>
+        
+    </div>
+    
     
 {% endblock content %}
