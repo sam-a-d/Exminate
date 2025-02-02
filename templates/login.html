@@ -16,17 +16,17 @@
             <form class="formclass mt-5"  action="" method="POST">
 
                 {% csrf_token %}
-                <div class="loginuser">
+                <div class="loginuser mb-0">
                 {{ loginForm.username }} <br><br>
                 </div>
-                <div class="loginuser">
+                <div class="loginuser my-0">
                 {{ loginForm.password }} <br><br>
                 </div>
-                <div class="loginsubmit">
+                <div class="loginsubmit mt-0">
                 <input type="submit" value="Submit">
                 </div>
             </form>
-            <h6 class="text-end mt-4">Don't have an account?click here to <a href="{% static "signup.html" %}">signup</a> </h6>    
+            <h6 class="text-end mt-4">Don't have an account?click here to <a href="/signup">signup</a> </h6>    
         </div>
         
     </div>
